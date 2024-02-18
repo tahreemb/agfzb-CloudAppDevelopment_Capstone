@@ -19,10 +19,10 @@
         <div class="container-fluid">
             <div class="navbar-header">
                   <a class="navbar-brand" href="#">Best Cars dealership</a>
+                  <a class="btn btn-link" href="/djangoapp/about">About</a>
+                  <a class="btn btn-link" href="/djangoapp/contact">Contact</a>
             </div>
             <ul class="nav navbar-right">
-                <a class="btn btn-link" href="/djangoapp/about">About</a>
-                <a class="btn btn-link" href="/djangoapp/contact">Contact</a>
                 {% if user.is_authenticated %}
                 <li>
                      <a class="btn btn-link" href="#">{{ user.first_name }}({{ user.username }})</a>
@@ -45,7 +45,31 @@
         </div>
     </nav>
     <!--Add a dealer table here -->
-    <p>This is the Index page of my app! </p>
+    <div class="container">
+    <table class="table">
+        <thead>
+        <tr>
+            <td data-field="id"> ID </td>
+            <td data-field="full_name"> Dealer Name </td>
+            <td data-field="address"> Address </td>
+            <td data-field="city"> City </td>
+            <td data-field="zip"> ZIP </td>
+            <td data-field="st"> State </td>
+        </tr>
+        </thead>
+        <tbody>
+        {% for dealer in dealership_list %}
+        <tr>
+            <td> {{dealer.id}} </td>
+            <td> {{dealer.full_name}} </td>
+            <td> {{dealer.address}} </td>
+            <td> {{dealer.city}} </td>
+            <td> {{dealer.zip}} </td>
+            <td> {{dealer.st}} </td>
+        </tr>
+        {%endfor%}
+        </tbody>
+    </table>
     </body>
 
 </html>
