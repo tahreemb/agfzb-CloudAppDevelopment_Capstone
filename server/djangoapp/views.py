@@ -2,7 +2,7 @@ from django.shortcuts import render
 from django.http import HttpResponseRedirect, HttpResponse
 from django.contrib.auth.models import User
 from django.shortcuts import get_object_or_404, render, redirect
-from .models import CarDealer
+from .models import CarDealer, CarModel
 from .restapis import get_request, get_dealers_from_cf, get_dealer_reviews_from_cf, get_dealer_by_id_from_cf
 from django.contrib.auth import login, logout, authenticate
 from django.contrib import messages
@@ -106,7 +106,7 @@ def get_dealer_details(request, id):
         return render(request, 'djangoapp/dealer_details.html', context)
 
 # Create a `add_review` view to submit a review
-def add_review(request, dealer_id):
+def add_review(request, id):
     context = {}
     url = "https://tahreembhatt-3000.theiadockernext-1-labs-prod-theiak8s-4-tor01.proxy.cognitiveclass.ai/dealerships/get"
     dealer = get_dealer_by_id_from_cf(url, id=id)
