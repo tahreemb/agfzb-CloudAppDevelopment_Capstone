@@ -46,22 +46,22 @@
     </nav>
     <!--Add a dealer table here -->
     <div class="container">
-    <table class="table">
+        <table class="table" id="table" data-filter-control="true">
         <thead>
         <tr>
-            <td data-field="id"> ID </td>
-            <td data-field="full_name"> Dealer Name </td>
-            <td data-field="address"> Address </td>
-            <td data-field="city"> City </td>
-            <td data-field="zip"> ZIP </td>
-            <td data-field="st"> State </td>
+            <th data-field="id"> ID </th>
+            <th data-field="full_name"> Dealer Name </th>
+            <th data-field="address"> Address </th>
+            <th data-field="city"> City </th>
+            <th data-field="zip"> ZIP </th>
+            <th data-field="st" data-filter-control="select"> State </th>
         </tr>
         </thead>
         <tbody>
         {% for dealer in dealership_list %}
         <tr>
             <td> {{dealer.id}} </td>
-            <td> {{dealer.full_name}} </td>
+            <td> <a href="{% url 'djangoapp:dealer_details' dealer.id %}"> {{dealer.full_name}} </a> </td>
             <td> {{dealer.address}} </td>
             <td> {{dealer.city}} </td>
             <td> {{dealer.zip}} </td>
@@ -71,5 +71,9 @@
         </tbody>
     </table>
     </body>
-
+    <script>
+        $(function() {
+          $('#table').bootstrapTable()
+        })
+      </script>
 </html>
